@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文字云生成器</title>
+</head>
+<body>
+    <h1>文字云生成器</h1>
+
+    <!-- 用户上传文本的表单 -->
+    <form action="/generate_wordcloud" method="post" enctype="multipart/form-data">
+        <label for="text-input">请输入文本或上传文档：</label>
+        <textarea id="text-input" name="text" rows="4" cols="50"></textarea>
+        <br>
+        <input type="submit" value="生成文字云">
+    </form>
+</body>
+</html>
