@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文字云生成器</title>
+    <style>
+        /* 添加一些基本的样式 */
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        #output-container {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>文字云生成器</h1>
+
+    <!-- 用户上传文本的表单 -->
+    <form id="upload-form">
+        <label for="text-input">请输入文本或上传文档：</label>
+        <textarea id="text-input" rows="4" cols="50"></textarea>
+        <br>
+        <input type="file" id="file-input" accept=".txt, .doc, .docx">
+        <br>
+        <button type="button" onclick="generateWordCloud()">生成文字云</button>
+    </form>
+
+    <!-- 生成的文字云图像显示区域 -->
+    <div id="output-container">
+        <h2>生成的文字云</h2>
+        <img id="wordcloud-image" alt="Word Cloud Image">
+    </div>
+
+    <script>
+        // JavaScript代码，调用后端API生成文字云
+        function generateWordCloud() {
+            // 获取用户输入的文本
+            var userInput = document.getElementById("text-input").value;
+
+            // 如果用户上传了文件，可以在这里处理文件上传逻辑
+
+            // 发送用户输入到后端进行处理
+            // 这里使用假的API地址，你需要替换成实际的后端API地址
+            var apiUrl = "https://your-backend-api-url/generate_wordcloud";
+            fetch(apiUrl, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ text: userInput }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                // 将后端返回的图像数据显示在页面上
+                document.getElementById("wordcloud-image").src = "data:image/png;base64," + data.image_data;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+    </script>
+</body>
+</html>
